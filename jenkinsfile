@@ -1,21 +1,16 @@
 pipeline {
-	agent any
+    agent any
 
-	stages {
-		stage('Checkout Source Code') {
-			steps {
-				checkout scm
-			}
-		}
+    stages {
+        stage('Print Branch Name') {
+            steps {
+                script {
+                    def branchName = checkout scm: [$class: 'GitSCM', branches: [[name: '**']], doGenerateSubmoduleConfigurations: false, extensions: [], userRemoteConfigs: [[url: 'https://github.com/ramyak3e/reactjs-demo']]]
+                    echo "Current Branch Name: ${branchName.GIT_BRANCH}"
+                }
+            }
+        }
 
-		stage('Print Branch Name') {
-			steps {
-				script {
-					echo "Current Branch : ${env.BRANCH_NAME}"
-				}
-			}
-		}
-
-		// Add more stages as needed for your pipeline
-	}
+        // Add more stages as needed for your pipeline
+    }
 }
