@@ -10,7 +10,7 @@ pipeline {
         //       echo "Git Checkout Result: ${branchName}"
          //           echo "Current Branch Name: ${branchName.GIT_BRANCH}"
            //         echo "Trimmed branch name: ${cleanedBranchName}"
-                    if ( cleanedBranchName == 'master' )
+                    if ( ${cleanedBranchName} == 'master' )
                     {
                         echo '${cleanedBranchName}'
                         }
