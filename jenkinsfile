@@ -5,6 +5,7 @@ pipeline {
 		stage('Build and Push Docker Image') {
 			steps {
 				script {
+echo 'env.BRANCH_NAME'
 					if (env.BRANCH_NAME == 'origin/master') {
                         echo 'Hello'
                     }
