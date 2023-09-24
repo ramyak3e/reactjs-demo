@@ -6,10 +6,10 @@ pipeline {
             steps {
                 script {
                     def branchName = checkout scm: [$class: 'GitSCM', branches: [[name: '**']], doGenerateSubmoduleConfigurations: false, extensions: [], userRemoteConfigs: [[url: 'https://github.com/ramyak3e/reactjs-demo/']]]
-                   
+                    def cleanedBranchName = branchName.GIT_BRANCH.replaceAll('^origin/', '')
                     echo "Git Checkout Result: ${branchName}"
                     echo "Current Branch Name: ${branchName.GIT_BRANCH}"
-                    echo "Trimmed branch name: ${branchName}"
+                    echo "Trimmed branch name: ${cleanedBranchName}"
                 }
             }
         }
