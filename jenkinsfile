@@ -5,7 +5,8 @@ pipeline {
         stage('Print Branch Name') {
             steps {
                 script {
-                    def branchName = checkout scm: [$class: 'GitSCM', branches: [[name: '**']], doGenerateSubmoduleConfigurations: false, extensions: [], userRemoteConfigs: [[url: 'https://github.com/ramyak3e/reactjs-demo']]]
+                    def branchName = checkout scm: [$class: 'GitSCM', branches: [[name: '**']], doGenerateSubmoduleConfigurations: false, extensions: [], userRemoteConfigs: [[url: 'https://github.com/ramyak3e/reactjs-demo/']]]
+                    echo "Git Checkout Result: ${branchName}"
                     echo "Current Branch Name: ${branchName.GIT_BRANCH}"
                 }
             }
