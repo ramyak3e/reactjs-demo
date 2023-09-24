@@ -11,7 +11,7 @@ pipeline {
 		stage('Print Branch Name') {
 			steps {
 				script {
-					echo "Current Branch Name: ${env.BRANCH_NAME}"
+					echo "Current Branch : ${env.BRANCH_NAME}"
 				}
 			}
 		}
