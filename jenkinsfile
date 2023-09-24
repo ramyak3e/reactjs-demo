@@ -2,16 +2,14 @@ pipeline {
 	agent any
 
 	stages {
-		stage('Build and Push Docker Image') {
+		stage('Print Branch Name') {
 			steps {
 				script {
-echo '${env.BRANCH_NAME}'
-					if (env.BRANCH_NAME == 'origin/master') {
-                        echo 'Hello'
-                    }
+					echo "Current Branch Name: ${env.BRANCH_NAME}"
+				}
+			}
+		}
 
-                    }
-            }
-        }
-    }
+		// Add more stages as needed for your pipeline
+	}
 }
