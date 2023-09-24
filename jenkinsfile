@@ -8,6 +8,7 @@ pipeline {
 					if (env.BRANCH_NAME == 'master') {
                         echo 'Hello from ${env.BRANCH_NAME} branch!'
                     }
+
                     }
             }
         }
