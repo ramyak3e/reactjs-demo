@@ -12,6 +12,8 @@ pipeline {
                     if ( cleanedBranchName == 'master' )
                     {
                         echo "${cleanedBranchName}"
+   stage('Deploy') {
+      steps {
                     withCredentials([usernameColonPassword(credentialsId: '${DOCKER_REGISTRY_CREDS}', variable: 'docker')]) {
    
 	                 sh "echo \$DOCKER_PASSWORD | docker login -u \$DOCKER_USERNAME --password-stdin docker.io"
@@ -19,7 +21,8 @@ pipeline {
                         sh 'docker tag react:dev $IMAGE_NAME'
                       sh 'deploy.sh'
                       sh 'docker push $IMAGE_NAME'
-
+}
+}
 }
                         }
                     else if ( cleanedBranchName == 'dev_branch' )
