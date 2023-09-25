@@ -12,17 +12,14 @@ pipeline {
                     if ( cleanedBranchName == 'master' )
                     {
                         echo "${cleanedBranchName}"
-   stage('Deploy') {
-      steps {
-                    withCredentials([usernameColonPassword(credentialsId: '${DOCKER_REGISTRY_CREDS}', variable: 'docker')]) {
-   
+                   withCredentials([usernamePassword(credentialsId: "${DOCKER_REGISTRY_CREDS}", passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')]) {
+         
 	                 sh "echo \$DOCKER_PASSWORD | docker login -u \$DOCKER_USERNAME --password-stdin docker.io"
                         sh 'build.sh'
                         sh 'docker tag react:dev $IMAGE_NAME'
                       sh 'deploy.sh'
                       sh 'docker push $IMAGE_NAME'
-}
-}
+
 }
                         }
                     else if ( cleanedBranchName == 'dev_branch' )
