@@ -16,9 +16,9 @@ pipeline {
          
 	                 sh "echo \$DOCKER_PASSWORD | docker login -u \$DOCKER_USERNAME --password-stdin docker.io"
                         sh './build.sh'
-                   //     sh 'docker tag react:dev $IMAGE_NAME'
-                    //  sh './deploy.sh'
-                     // sh 'docker push $IMAGE_NAME/dev'
+                       sh 'docker tag react:dev $IMAGE_NAME'
+                  sh './deploy.sh'
+                 sh 'docker push $IMAGE_NAME/dev'
 
 }
                         }
